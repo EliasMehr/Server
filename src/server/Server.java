@@ -15,8 +15,9 @@ public class Server {
 
             while (true) {
                 Socket playerRequest1 = acceptConnectionRequest.accept();
+                System.out.println("First player connected");
                 Socket playerRequest2 = acceptConnectionRequest.accept();
-
+                System.out.println("Second player connected");
                Thread initiateGame = new Thread(new Game(playerRequest1, playerRequest2));
                initiateGame.start();
             }
