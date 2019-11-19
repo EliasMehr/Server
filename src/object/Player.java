@@ -1,11 +1,12 @@
 package object;
 
+import services.Category;
+
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.util.ArrayList;
-import java.util.List;
+
 
 public class Player {
 
@@ -15,33 +16,25 @@ public class Player {
     private ObjectOutputStream playerOutput;
     private ObjectInputStream playerInput;
 
-    private int[] player1TotalScore = new int[4];
-    private int[] player2TotalScore = new int[4];
-
-    public Player(String name, int score, Socket player) {
+    public Player(String name, int score, Socket socket) {
         this.score = score;
         this.name = name;
 
         try {
-            this.playerInput = new ObjectInputStream(player.getInputStream());
-            this.playerOutput = new ObjectOutputStream(player.getOutputStream());
+            this.playerOutput = new ObjectOutputStream(socket.getOutputStream());
+            this.playerInput = new ObjectInputStream(socket.getInputStream());
         } catch (IOException e) {
             e.printStackTrace();
-
             System.out.println(e.getMessage());
         }
     }
 
-    public void setPlayer1TotalScore(int[] player1TotalScore) {
-        this.player1TotalScore = player1TotalScore;
-    }
-
-    public void setPlayer2TotalScore(int[] player2TotalScore) {
-        this.player2TotalScore = player2TotalScore;
-    }
-
     public void setName(String name) {
         this.name = name;
+    }
+
+    public void addPointToScore() {
+        this.score++;
     }
 
     public void setScore(int score) {
@@ -72,12 +65,29 @@ public class Player {
         return opponent;
     }
 
-    public int[] getPlayer1TotalScore() {
-        return player1TotalScore;
+
+    public void sendMessage(String message) {
+        try {
+            playerOutput.writeObject(message);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    public int[] getPlayer2TotalScore() {
-        return player2TotalScore;
+    public void sendCategories(Object categories) {
+        try {
+            playerOutput.writeObject(categories);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void sendQuestion(Question question) {
+        try {
+            playerOutput.writeObject(question);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public ObjectOutputStream getPlayerOutput() {
@@ -86,6 +96,22 @@ public class Player {
 
     public ObjectInputStream getPlayerInput() {
         return playerInput;
+    }
+
+    public Object getInput() throws IOException, ClassNotFoundException {
+      return playerInput.readObject();
+    }
+
+    public Category[] getTypeOfCategory() {
+        opponent.sendMessage("Opponent selecting category");
+        Category[] categories = Category.values();
+        try {
+            playerOutput.writeObject(categories);
+            categories = (Category[]) playerInput.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return categories;
     }
 }
 

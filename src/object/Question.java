@@ -3,7 +3,7 @@ package object;
 import java.io.Serializable;
 
 public class Question implements Serializable {
-    static final long serialUID = 42L;
+    static final long serialVersionUID = 42L;
 
     private String category;
     private String question;
@@ -43,5 +43,10 @@ public class Question implements Serializable {
 
     public String getCategory() {
         return category;
+    }
+
+    @Override
+    public String toString() {
+        return this.category + " " + this.question;
     }
 }

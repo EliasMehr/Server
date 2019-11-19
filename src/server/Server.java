@@ -11,6 +11,7 @@ public class Server {
     private int serverPort = 5989;
 
     public Server() {
+        System.out.println("Game server running....");
         try (ServerSocket acceptConnectionRequest = new ServerSocket(serverPort)) {
 
             while (true) {
@@ -18,8 +19,8 @@ public class Server {
                 System.out.println("First player connected");
                 Socket playerRequest2 = acceptConnectionRequest.accept();
                 System.out.println("Second player connected");
-               Thread initiateGame = new Thread(new Game(playerRequest1, playerRequest2));
-               initiateGame.start();
+                Thread initiateGame = new Thread(new Game(playerRequest1, playerRequest2));
+                initiateGame.start();
             }
         } catch (IOException e) {
             e.printStackTrace();

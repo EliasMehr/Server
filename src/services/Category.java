@@ -1,15 +1,12 @@
 package services;
 
-import java.io.Serializable;
-
-public enum Category implements Serializable {
+public enum Category {
     HISTORIA,
     VETENSKAP,
     SPEL,
     MUSIK,
     MAT,
     POLITIK;
-
 }
 
 
