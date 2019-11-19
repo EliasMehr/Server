@@ -82,6 +82,16 @@ public class Player {
         }
     }
 
+    public Category recieveCategoryFromUser(){
+        Category selectedCategory = null;
+        try {
+           selectedCategory = (Category) playerInput.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return selectedCategory;
+    }
+
     public void sendQuestion(Question question) {
         try {
             playerOutput.writeObject(question);

@@ -16,7 +16,6 @@ public class Settings {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         this.numberOfRounds = Integer.parseInt(gameSettings.getProperty("rounds"));
         this.numberOfQuestions = Integer.parseInt(gameSettings.getProperty("questions"));
     }
