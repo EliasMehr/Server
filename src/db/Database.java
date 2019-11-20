@@ -9,14 +9,14 @@ import java.util.List;
 
 public class Database {
 
-    List<Question> qList;
+    private List<Question> qList;
     public static List<ScoreReport> scoreReports = new ArrayList<>();
 
-    public Database(){
+    public Database() {
         qList = initiateQuestionList();
     }
 
-    public List<Question> initiateQuestionList(){
+    public List<Question> initiateQuestionList() {
         List<Question> questionList = new ArrayList<>();
 
         questionList.add(new Question(Category.HISTORIA, "När startade andra världskriget?", "1945", "1920", "1942", "1939"));
@@ -32,7 +32,7 @@ public class Database {
         questionList.add(new Question(Category.MAT, "Flygande jakob innehåller bland annat?", "Purjolök & ananas", "Mango & majs", "Tonfisk", "Kyckling & banan"));
 
         questionList.add(new Question(Category.MUSIK, "Avicii var en vadå?", "Sångare", "Statist", "Maskot", "Producent"));
-        questionList.add(new Question(Category.MUSIK, "Hur många tangenter har ett piano?", "24", "33", "48", "88" ));
+        questionList.add(new Question(Category.MUSIK, "Hur många tangenter har ett piano?", "24", "33", "48", "88"));
         questionList.add(new Question(Category.MUSIK, "Vem kallades för king of pop?", "Whitney Houston", "Barry White", "Kendal Jenner", "Michael Jackson"));
         questionList.add(new Question(Category.MUSIK, "Vilket land kommer Icona pop ifrån?", "Ryssland", "Belgien", "Norge", "Sverige"));
 
@@ -44,33 +44,33 @@ public class Database {
         return questionList;
     }
 
-        // Test metod för att se att objekten av frågor existerar enligt kategorier
+    // Test metod för att se att objekten av frågor existerar enligt kategorier
 
-    public void viewQuestions(Category category){
+    public void viewQuestions(Category category) {
         qList.forEach(question -> {
             if (category.equals(question.getCategory()))
-            System.out.println(question.getQuestion());
+                System.out.println(question.getQuestion());
         });
     }
 
-    public static void endOfGameReport(){
-        scoreReports.forEach( scoreReport -> {
-                System.out.println(scoreReport);
+    public static void endOfGameReport() {
+        scoreReports.forEach(scoreReport -> {
+            System.out.println(scoreReport);
         });
     }
 
-    public List<Question> getallQuestionsFromCategory(Category category){
+    public List<Question> getallQuestionsFromCategory(Category category) {
         List<Question> allQuestionsForCategory = new ArrayList<>();
 
         qList.forEach(question -> {
-            if (category.equals(question.getCategory())){
+            if (category.equals(question.getCategory())) {
                 allQuestionsForCategory.add(question);
             }
         });
         return allQuestionsForCategory;
     }
 
-    public List<Category> initiateCategories(){
+    public List<Category> initiateCategories() {
         List<Category> categories = new ArrayList<>();
 
         categories.add(Category.HISTORIA);
@@ -83,11 +83,4 @@ public class Database {
         return categories;
     }
 
-    public List<ScoreReport> getScoreReports() {
-        return scoreReports;
-    }
-
-    public void setScoreReports(List<ScoreReport> scoreReports) {
-        this.scoreReports = scoreReports;
-    }
 }

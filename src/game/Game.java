@@ -41,7 +41,7 @@ public class Game implements Runnable {
     @Override
     public void run() {
         try {
-            // initiating playGame() method -->
+            // initiating playGame() method
             playGame();
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
