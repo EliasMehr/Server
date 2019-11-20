@@ -23,24 +23,29 @@ public class Database {
         questionList.add(new Question(Category.HISTORIA, "När införde Sverige högertrafik?", "1920", "1965", "1945", "1967"));
         questionList.add(new Question(Category.HISTORIA, "Vilket år sköts Olof Palme?", "1976", "1980", "1989", "1986"));
         questionList.add(new Question(Category.HISTORIA, "Sveriges första kvinnliga partiledare var?", "Maria Leissner", "Mona Sahlin", "Maud Olofsson", "Karin Söder"));
-        questionList.add(new Question(Category.HISTORIA, "Vilket efternamn hade Greta Garbo när hon föddes?", "Svensson", "Garbi", "Olofsson", "Gustafsson"));
+        questionList.add(new Question(Category.HISTORIA, "Vilket efternamn hade Greta Garbo när hon föddes?", "Svensson", "Garbo", "Olofsson", "Gustafsson"));
         questionList.add(new Question(Category.HISTORIA, "Vem var kung innan Karl XII?", "Gustav III", "Fredrik I", "Gustav Vasa", "Karl XI"));
 
         questionList.add(new Question(Category.MAT, "Vad är entrecote för typ av kött?", "Fågel", "Fläsk", "Lamm", "Nöt"));
         questionList.add(new Question(Category.MAT, "Huvudingrediens i tofu?", "Majs", "Mjöl", "Banan", "Soja"));
         questionList.add(new Question(Category.MAT, "Bearnesesås tillagas alltid med?", "Timjan", "Oregano", "Persilja", "Dragon"));
         questionList.add(new Question(Category.MAT, "Flygande jakob innehåller bland annat?", "Purjolök & ananas", "Mango & majs", "Tonfisk", "Kyckling & banan"));
+        questionList.add(new Question(Category.MAT, "Vilken hamburgarkedja är svensk?", "Burger King", "McDonalds", "Pinchos", "Max"));
+
 
         questionList.add(new Question(Category.MUSIK, "Avicii var en vadå?", "Sångare", "Statist", "Maskot", "Producent"));
         questionList.add(new Question(Category.MUSIK, "Hur många tangenter har ett piano?", "24", "33", "48", "88"));
         questionList.add(new Question(Category.MUSIK, "Vem kallades för king of pop?", "Whitney Houston", "Barry White", "Kendal Jenner", "Michael Jackson"));
         questionList.add(new Question(Category.MUSIK, "Vilket land kommer Icona pop ifrån?", "Ryssland", "Belgien", "Norge", "Sverige"));
+        questionList.add(new Question(Category.MUSIK, "Vilken låt är Otto Knows känd för?", "Parachute", "Next to me", "Friends", "Million Voices"));
+        questionList.add(new Question(Category.MUSIK, "Vilket år dog Luther Vandross", "2001", "1997", "2010", "2005"));
 
         questionList.add(new Question(Category.SPEL, "Vad är World of Warcarft för typ av spel?", "RPG", "FPS", "3D", "MMORPG"));
         questionList.add(new Question(Category.SPEL, "Vem är en svensk legend inom Counter-Strike 1.6?", "WazP", "Potti", "Get_RiGHT", "HeaToN"));
         questionList.add(new Question(Category.SPEL, "Världsspelet LOL står för?", "Laughing out loud", "Lean ocean Lanister", "League of lust", "League of Legends"));
         questionList.add(new Question(Category.SPEL, "Vad är fördelen med mekaniskt tangetbord?", "Skönare ljud", "RGB-Belysning", "Det är en bluff", "Snabbare respons"));
-
+        questionList.add(new Question(Category.SPEL, "När släppte Nintendo sin första konsol?", "1990", "1966", "1989", "1983"));
+        questionList.add(new Question(Category.SPEL, "Vilken konsol kom från SONY 2013?", "Playstation 3", "Playstation 2 Slim", "Playstation 4 PRO", "Playstation 4"));
         return questionList;
     }
 
