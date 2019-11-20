@@ -9,11 +9,13 @@ import settings.Settings;
 
 import java.io.IOException;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
 public class Game implements Runnable {
+
     // Game properties after completed Matchmaking
     private Database database = new Database();
     private Settings settings = new Settings();
@@ -39,6 +41,7 @@ public class Game implements Runnable {
     @Override
     public void run() {
         try {
+            // initiating playGame() method -->
             playGame();
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
@@ -51,20 +54,20 @@ public class Game implements Runnable {
         listOfPlayers.add(firstPlayer);
         listOfPlayers.add(secondPlayer);
 
+        List<Category> categories = database.initiateCategories();
+
         for (int i = 0; i < totalGameRounds; i++) {
+            listOfPlayers.get(1).sendMessage("Waiting for opponent to select a category");
+            listOfPlayers.get(0).sendCategories(categories);
+            Category selectedCategory = listOfPlayers.get(0).recieveCategoryFromUser();
 
-            // Fråga spelare 1 ( fråga första i listan dvs index 0) om vilken kategori -> (metod)
-            // Vi tar även emot en kategori.
-
-
-            playRound("Musik", listOfPlayers);
+            playRound(selectedCategory, listOfPlayers);
             Collections.reverse(listOfPlayers);
-            //Skicka poäng för rundan
             roundCount++;
         }
     }
 
-    private void playRound(String category, List<Player> playerList) throws IOException, ClassNotFoundException {
+    private void playRound(Category category, List<Player> playerList) throws IOException, ClassNotFoundException {
 
         List<Question> qList = database.getallQuestionsFromCategory(category);
         Collections.shuffle(qList);
@@ -90,6 +93,7 @@ public class Game implements Runnable {
         for (int i = 0; i < questionsForEachRound; i++) {
             playerList.get(1).sendQuestion(qList.get(i));
             String inputFromPlayer = (String) playerList.get(1).getInput();
+
             if (inputFromPlayer.equals(qList.get(i).getCorrectAlternative())) {
                 playerList.get(1).addPointToScore();
             }
@@ -98,21 +102,13 @@ public class Game implements Runnable {
 
         Database.scoreReports.add(new ScoreReport(playerList.get(0).getName(), playerList.get(0).getScore(), roundCount));
         Database.scoreReports.add(new ScoreReport(playerList.get(1).getName(), playerList.get(1).getScore(), roundCount));
-        System.out.println("Listans storlek:" + Database.scoreReports.size());
+
         Database.endOfGameReport();
 
-        //Database.
+        // Nollställer varje spelares poäng för rundan efter avslutad runda
 
         playerList.get(0).setScore(0);
         playerList.get(1).setScore(0);
 
     }
-
 }
-
-// TODO -->
-// poäng per runda för varje spelare
-// spara poäng för varje runda därefter summera ihop alla poäng vid slutet av rundan
-// Använda arrayer för att hålla reda på rond poängen.
-// TODO -->
-// Använda collections.reverse

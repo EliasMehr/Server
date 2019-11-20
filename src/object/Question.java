@@ -1,18 +1,20 @@
 package object;
 
+import services.Category;
+
 import java.io.Serializable;
 
 public class Question implements Serializable {
     static final long serialVersionUID = 42L;
 
-    private String category;
+    private Category category;
     private String question;
     private String alternative1;
     private String alternative2;
     private String alternative3;
     private String correctAlternative;
 
-    public Question(String category, String question, String alternative1, String alternative2, String alternative3, String correctAlternative) {
+    public Question(Category category, String question, String alternative1, String alternative2, String alternative3, String correctAlternative) {
         this.category = category;
         this.question = question;
         this.alternative1 = alternative1;
@@ -41,7 +43,7 @@ public class Question implements Serializable {
         return correctAlternative;
     }
 
-    public String getCategory() {
+    public Category getCategory() {
         return category;
     }
 
